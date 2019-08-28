@@ -12,7 +12,13 @@ class Dictionary{
     }
 
     search(con, word){
-        return con.collection(this.collection).findOne({ _id: word.toLowerCase()})
+        return con.collection(this.collection).findOne({ _id: word.toLowerCase()}, {
+            fields: {
+                _id: 0,
+                name: 1,
+                definitions: 1
+            }
+        })
     }
 
     insertWords(con, data){
